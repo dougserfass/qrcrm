@@ -24,7 +24,7 @@ Template.createQrCode.events({
             }
         );
 */
-
+/*
         var accessToken = 'eba13be7f960d1593d40e4b44b4ed929e41c91b5';
         var url = 'https://api-ssl.bitly.com/v3/shorten?access_token=' + accessToken + '&longUrl=' + encodeURIComponent($(e.target).find('[name=text]').val());
         $.getJSON(
@@ -33,9 +33,12 @@ Template.createQrCode.events({
             function(response)
             {
                 var qrcode = {
-                    text: encodeURIComponent(response.data.url)
+                    text: encodeURIComponent(response.data.url),
+                    machineName: $(e.target).find('[name=machineName]').val(),
+                    serialNumber: $(e.target).find('[name=serialNumber]').val()
                 }
-                qrCode.insert(qrcode);
+                var id = qrCode.insert(qrcode);
+                console.log(Router.routes.qrCodePage.url({ _id: id }));
                 Router.go('readQrCode', {}, { query: "text=" + qrcode.text });
                 location.reload();
                 //console.log(response.data.url);
@@ -43,7 +46,17 @@ Template.createQrCode.events({
                 //callback(response.data.url);
             }
         );
+*/
 
+        var qrcode = {
+            text: '',
+            machineName: $(e.target).find('[name=machineName]').val(),
+            serialNumber: $(e.target).find('[name=serialNumber]').val()
+        }
+        var id = qrCode.insert(qrcode);
+        qrCode.update(id, {$set: {text: encodeURIComponent(Router.routes.qrCodePage.url({ _id: id }))}});
+        Router.go('readQrCode', {}, { query: "text=" + encodeURIComponent(Router.routes.qrCodePage.url({ _id: id })) });
+        location.reload();
 
         //Router.go('readQrCode', {}, { query: "text=" + qrcode.text });
         //location.reload();

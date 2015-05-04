@@ -3,6 +3,10 @@ Meteor.startup(function () {
         Software.insert({name: "software1"});
     }
     if (qrCode.find().count() === 0) {
-        qrCode.insert({text: encodeURIComponent("http://jindo.dev.naver.com/collie")});
+        qrCode.insert({
+            text: encodeURIComponent("http://jindo.dev.naver.com/collie"),
+            machineName: "machineName1",
+            serialNumber: "serialNumber1"
+        });
     }
 });

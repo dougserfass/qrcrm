@@ -7,3 +7,6 @@ Meteor.publish("user", function () {
 Meteor.publish('qrCode', function() {
     return qrCode.find();
 });
+Meteor.publish('singleQRCode', function(id) {
+    return id && qrCode.find(id);
+});
