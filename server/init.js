@@ -4,8 +4,13 @@ Meteor.startup(function () {
     }
     if (qrCode.find().count() === 0) {
         qrCode.insert({
-            text: encodeURIComponent("http://jindo.dev.naver.com/collie"),
-            machineName: "machineName1",
+            url: encodeURIComponent("http://jindo.dev.naver.com/collie"),
+            productName: "productName1"
+        });
+    }
+    if (Product.find().count() === 0) {
+        Product.insert({
+            name: "productName1",
             serialNumber: "serialNumber1"
         });
     }

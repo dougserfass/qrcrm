@@ -7,9 +7,9 @@ Template.readQrCode.events({
             onrendered: function(qrcode) {
                 var imgData = qrcode.toDataURL('image/jpeg');
                 var doc = new jsPDF();
-                doc.text(10, 10, getParameterByName('text'));
+                doc.text(10, 10, getParameterByName('url'));
                 doc.addImage(imgData, 'JPEG', 10, 20);
-                doc.save(getParameterByName('text')+'.pdf');
+                doc.save(getParameterByName('url')+'.pdf');
             }
         });
     }

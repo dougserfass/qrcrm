@@ -47,15 +47,19 @@ Template.createQrCode.events({
             }
         );
 */
-
-        var qrcode = {
-            text: '',
-            machineName: $(e.target).find('[name=machineName]').val(),
+        var product = {
+            name: $(e.target).find('[name=productName]').val(),
             serialNumber: $(e.target).find('[name=serialNumber]').val()
         }
-        var id = qrCode.insert(qrcode);
-        qrCode.update(id, {$set: {text: encodeURIComponent(Router.routes.qrCodePage.url({ _id: id }))}});
-        Router.go('readQrCode', {}, { query: "text=" + encodeURIComponent(Router.routes.qrCodePage.url({ _id: id })) });
+        var productId = Product.insert(product);
+        var qrcode = {
+            url: '',
+            productName: product.name
+        }
+        var qrCodeId = qrCode.insert(qrcode);
+        //qrCode.update(qrCodeId, {$set: {url: encodeURIComponent(Router.routes.readProduct.url({ _id: productId }))}});
+        qrCode.update(qrCodeId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+        Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
         location.reload();
 
         //Router.go('readQrCode', {}, { query: "text=" + qrcode.text });

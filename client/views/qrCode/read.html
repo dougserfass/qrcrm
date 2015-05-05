@@ -1,16 +1,13 @@
 <template name="readQrCode">
-
     <form class="main">
         <div id="qrcode"></div>
         <button type="button" class="export btn" id="export">Export</button>
     </form>
-
     <script type="text/javascript">
         function getParameterByName(name) {
             var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
-        new QRCode(document.getElementById("qrcode"), getParameterByName('text'));
+        new QRCode(document.getElementById("qrcode"), getParameterByName('url'));
     </script>
-
 </template>
