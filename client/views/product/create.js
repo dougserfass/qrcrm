@@ -1,4 +1,4 @@
-Template.createQrCode.events({
+Template.createProduct.events({
     'submit form': function(e) {
         e.preventDefault();
         //var qrcode = {
@@ -47,6 +47,7 @@ Template.createQrCode.events({
             }
         );
 */
+/*
         var product = {
             name: $(e.target).find('[name=productName]').val(),
             serialNumber: $(e.target).find('[name=serialNumber]').val()
@@ -57,8 +58,17 @@ Template.createQrCode.events({
             productName: product.name
         }
         var qrCodeId = qrCode.insert(qrcode);
-        //qrCode.update(qrCodeId, {$set: {url: encodeURIComponent(Router.routes.readProduct.url({ _id: productId }))}});
         qrCode.update(qrCodeId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+        Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
+        location.reload();
+*/
+        var product = {
+            name: $(e.target).find('[name=name]').val(),
+            serialNumber: $(e.target).find('[name=serialNumber]').val(),
+            url: ''
+        }
+        var productId = Product.insert(product);
+        Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
         Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
         location.reload();
 
