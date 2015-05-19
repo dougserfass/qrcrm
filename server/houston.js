@@ -4,6 +4,8 @@ Houston.add_collection(Houston._admins);
 Houston.hide_collection(Software);
 Houston.add_collection(Product);
 
+Houston.add_collection(Case);
+
 Houston.methods("Product", {
     "QR Code": function (product) {
         //this.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: product._id })) });

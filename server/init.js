@@ -9,4 +9,10 @@ Meteor.startup(function () {
             url: ""
         });
     }
+    if (Case.find().count() === 0) {
+        Case.insert({
+            number: "number1",
+            name: "name1"
+        });
+    }
 });

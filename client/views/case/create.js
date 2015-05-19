@@ -1,4 +1,4 @@
-Template.createProduct.events({
+Template.createCase.events({
     'submit form': function(e) {
         e.preventDefault();
 /*
@@ -154,21 +154,18 @@ Template.createProduct.events({
             }
         });
 */
-/*
+
         var callback = function (data) {
             console.log(data);
-
-             var product = {
-             name: $(e.target).find('[name=name]').val(),
-             serialNumber: $(e.target).find('[name=serialNumber]').val(),
-             url: ''
-             }
-             var productId = Product.insert(product);
-             Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-             Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
-             location.reload();
-
-
+/*
+            var aCase = {
+                number: 'dummy',
+                name: $(e.target).find('[name=name]').val()
+            }
+            var caseId = Case.insert(aCase);
+            Router.go('readCase', {_id: caseId});
+            location.reload();
+*/
         };
 
         var data = '{';
@@ -192,9 +189,9 @@ Template.createProduct.events({
             success: callback,
             error: callback
         });
-*/
 
 
+/*
         var product = {
             name: $(e.target).find('[name=name]').val(),
             serialNumber: $(e.target).find('[name=serialNumber]').val(),
@@ -204,6 +201,7 @@ Template.createProduct.events({
         Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
         Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
         location.reload();
+*/
 
     }
 });
