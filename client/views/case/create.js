@@ -73,21 +73,9 @@ Template.createCase.events({
             jsonp: false
         });
 */
-/*
+
         var callback = function (data) {
             console.log(data);
-
-            var product = {
-                name: $(e.target).find('[name=name]').val(),
-                serialNumber: $(e.target).find('[name=serialNumber]').val(),
-                url: ''
-            }
-            var productId = Product.insert(product);
-            Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-            Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
-            location.reload();
-
-
         };
         var data = '';
         $.ajax({
@@ -98,7 +86,7 @@ Template.createCase.events({
             success: callback,
             error: callback
         });
-*/
+
 
 
 
@@ -154,10 +142,10 @@ Template.createCase.events({
             }
         });
 */
-
+/*
         var callback = function (data) {
             console.log(data);
-/*
+
             var aCase = {
                 number: 'dummy',
                 name: $(e.target).find('[name=name]').val()
@@ -165,7 +153,7 @@ Template.createCase.events({
             var caseId = Case.insert(aCase);
             Router.go('readCase', {_id: caseId});
             location.reload();
-*/
+
         };
 
         var data = '{';
@@ -186,6 +174,32 @@ Template.createCase.events({
             crossDomain: true,
             data: data,
             headers: headers,
+            success: callback,
+            error: callback
+        });
+*/
+
+
+        var callback = function (data) {
+            console.log(data);
+/*
+            var aCase = {
+                number: 'dummy',
+                name: $(e.target).find('[name=name]').val()
+            }
+            var caseId = Case.insert(aCase);
+            Router.go('readCase', {_id: caseId});
+            location.reload();
+*/
+        };
+
+        var data = '';
+
+        $.ajax({
+            url: "https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl?script=964&deploy=1&compid=TSTDRV1291213&h=ce4725ce2a8e95a56553&recordtype=supportcase&s_no=909&model_no=ABC000123&location=Oz&inc_mess=TestforSuiteleteCall&product=3",
+            dataType: 'jsonp',
+            crossDomain: true,
+            data: data,
             success: callback,
             error: callback
         });
