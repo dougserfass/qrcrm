@@ -1,8 +1,16 @@
 <template name="readProduct">
     <form class="main">
-        {{name}}
-        <br>
-        {{serialNumber}}
+        <label class="control-label" for="name">product</label>
+        <div class="control-group">
+            <label class="control-label" for="name">name</label>
+            <div class="controls">
+                {{name}}
+            </div>
+            <label class="control-label" for="name">serial number</label>
+            <div class="controls">
+                {{serialNumber}}
+            </div>
+        </div>
     </form>
     {{> createCase}}
 </template>

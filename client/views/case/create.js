@@ -73,7 +73,7 @@ Template.createCase.events({
             jsonp: false
         });
 */
-
+/*
         var callback = function (data) {
             console.log(data);
         };
@@ -86,7 +86,7 @@ Template.createCase.events({
             success: callback,
             error: callback
         });
-
+*/
 
 
 
@@ -180,21 +180,17 @@ Template.createCase.events({
 */
 
 
-        var callback = function (data) {
-            console.log(data);
-/*
+        var callback = function (number) {
+            //console.log(number);
             var aCase = {
-                number: 'dummy',
+                number: number.replace(/"/g,""),
                 name: $(e.target).find('[name=name]').val()
             }
             var caseId = Case.insert(aCase);
             Router.go('readCase', {_id: caseId});
             location.reload();
-*/
         };
-
         var data = '';
-
         $.ajax({
             url: "https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl?script=964&deploy=1&compid=TSTDRV1291213&h=ce4725ce2a8e95a56553&recordtype=supportcase&s_no=909&model_no=ABC000123&location=Oz&inc_mess=TestforSuiteleteCall&product=3",
             dataType: 'jsonp',

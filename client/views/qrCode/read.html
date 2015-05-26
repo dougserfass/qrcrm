@@ -1,13 +1,16 @@
 <template name="readQrCode">
     <form class="main">
+        <a id="qrcodeurl">to create a case, scan QR code or click here</a>
         <div id="qrcode"></div>
-        <button type="button" class="export btn" id="export">Export</button>
+        <button type="button" class="export btn" id="export">export</button>
     </form>
     <script type="text/javascript">
         function getParameterByName(name) {
             var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
-        new QRCode(document.getElementById("qrcode"), getParameterByName('url'));
+        var url = getParameterByName('url');
+        document.getElementById("qrcodeurl").href = url;
+        new QRCode(document.getElementById("qrcode"), url);
     </script>
 </template>
