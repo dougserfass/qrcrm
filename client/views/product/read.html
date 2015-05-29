@@ -2,13 +2,27 @@
     <form class="main">
         <label class="control-label" for="name">product</label>
         <div class="control-group">
-            <label class="control-label" for="name">name</label>
-            <div class="controls">
-                {{name}}
+            <div class="form-group">
+                <label for="id">name</label>
+                <select class="form-control" id="id" disabled>
+                    <option value="1" selected={{selected "1"}}>5500 Panasonic Display</option>
+                    <option value="2" selected={{selected "2"}}>5512D Panasonic</option>
+                    <option value="4" selected={{selected "4"}}>Motorola 4424LD+ Phone</option>
+                    <option value="5" selected={{selected "5"}}>Motorola 4450 DSS Console</option>
+                    <option value="3" selected={{selected "3"}}>Panasonic KX-TG4500</option>
+                </select>
             </div>
             <label class="control-label" for="name">serial number</label>
             <div class="controls">
                 {{serialNumber}}
+            </div>
+            <label class="control-label" for="name">model number</label>
+            <div class="controls">
+                {{modelNumber}}
+            </div>
+            <label class="control-label" for="name">warranty expiry date</label>
+            <div class="controls">
+                {{warrantyExpiryDate}}
             </div>
         </div>
     </form>

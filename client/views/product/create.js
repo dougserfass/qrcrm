@@ -196,8 +196,10 @@ Template.createProduct.events({
 
 
         var product = {
-            name: $(e.target).find('[name=name]').val(),
+            id: $(e.target).find('[name=id]').val(),
             serialNumber: $(e.target).find('[name=serialNumber]').val(),
+            modelNumber: $(e.target).find('[name=modelNumber]').val(),
+            warrantyExpiryDate: $(e.target).find('[name=warrantyExpiryDate]').val(),
             url: ''
         }
         var productId = Product.insert(product);

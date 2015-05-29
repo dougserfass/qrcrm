@@ -184,7 +184,10 @@ Template.createCase.events({
             //console.log(number);
             var aCase = {
                 number: number.replace(/"/g,""),
-                name: $(e.target).find('[name=name]').val()
+                name: $(e.target).find('[name=name]').val(),
+                phone: $(e.target).find('[name=phone]').val(),
+                email: $(e.target).find('[name=email]').val(),
+                message: $(e.target).find('[name=message]').val()
             }
             var caseId = Case.insert(aCase);
             Router.go('readCase', {_id: caseId});

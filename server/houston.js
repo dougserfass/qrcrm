@@ -8,7 +8,7 @@ Houston.add_collection(Case);
 
 Houston.methods("Product", {
     "QR Code": function (product) {
-        //this.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: product._id })) });
+        //Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: product._id })) });
 /*
         Meteor.users.remove(user._id);
         Accounts.createUser({
