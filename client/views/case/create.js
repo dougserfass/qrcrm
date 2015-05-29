@@ -190,8 +190,9 @@ Template.createCase.events({
                 message: $(e.target).find('[name=message]').val()
             }
             var caseId = Case.insert(aCase);
-            Router.go('readCase', {_id: caseId});
-            location.reload();
+            alert('A support case no. '+aCase.number+' has been created. Thank you!');
+            //Router.go('readCase', {_id: caseId});
+            //location.reload();
         };
         var data = '';
         $.ajax({
