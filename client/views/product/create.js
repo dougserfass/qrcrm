@@ -197,6 +197,7 @@ Template.createProduct.events({
 
         var product = {
             id: $(e.target).find('[name=id]').val(),
+            companyId: $(e.target).find('[name=companyId]').val(),
             serialNumber: $(e.target).find('[name=serialNumber]').val(),
             modelNumber: $(e.target).find('[name=modelNumber]').val(),
             warrantyExpiryDate: $(e.target).find('[name=warrantyExpiryDate]').val(),
@@ -206,6 +207,5 @@ Template.createProduct.events({
         Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
         Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
         location.reload();
-
     }
 });

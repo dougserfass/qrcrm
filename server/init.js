@@ -5,6 +5,7 @@ Meteor.startup(function () {
     if (Product.find().count() === 0) {
         Product.insert({
             id: "1",
+            companyId: "1",
             serialNumber: "serialNumber1",
             modelNumber: "modelNumber1",
             warrantyExpiryDate: "",

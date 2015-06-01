@@ -194,9 +194,29 @@ Template.createCase.events({
             //Router.go('readCase', {_id: caseId});
             //location.reload();
         };
+        //url: "https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl?script=964&deploy=1&compid=TSTDRV1291213&h=ce4725ce2a8e95a56553&recordtype=supportcase&s_no=909&model_no=ABC000123&location=Oz&inc_mess=TestforSuiteleteCall&product=3",
+        var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
+            '?script=964'+
+            '&deploy=1'+
+            '&compid=TSTDRV1291213'+
+            '&h=ce4725ce2a8e95a56553'+
+            '&recordtype=supportcase'+
+            '&location=Oz'+
+            '&company='+$(e.target).find('[name=companyId]').val()+
+            '&product='+$(e.target).find('[name=id]').val()+
+            '&custeventcase_opened_by='+$(e.target).find('[name=name]').val()+
+            '&email='+$(e.target).find('[name=email]').val()+
+            '&phone='+$(e.target).find('[name=phone]').val()+
+            '&origin=1'+
+            '&custevent_s_no='+$(e.target).find('[name=serialNumber]').val()+
+            '&custevent_model_no='+$(e.target).find('[name=modelNumber]').val()+
+            '&is_under_warranty='+'Y'+
+            '&warranty_expiry_date='+$(e.target).find('[name=warrantyExpiryDate]').val()+
+            '&messagenew=Y'+
+            '&incomingmessage='+$(e.target).find('[name=message]').val();
         var data = '';
         $.ajax({
-            url: "https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl?script=964&deploy=1&compid=TSTDRV1291213&h=ce4725ce2a8e95a56553&recordtype=supportcase&s_no=909&model_no=ABC000123&location=Oz&inc_mess=TestforSuiteleteCall&product=3",
+            url: url,
             dataType: 'jsonp',
             crossDomain: true,
             data: data,

@@ -5,11 +5,21 @@
             <div class="form-group">
                 <label for="id">name</label>
                 <select class="form-control" id="id" disabled>
-                    <option value="1" selected={{selected "1"}}>5500 Panasonic Display</option>
-                    <option value="2" selected={{selected "2"}}>5512D Panasonic</option>
-                    <option value="4" selected={{selected "4"}}>Motorola 4424LD+ Phone</option>
-                    <option value="5" selected={{selected "5"}}>Motorola 4450 DSS Console</option>
-                    <option value="3" selected={{selected "3"}}>Panasonic KX-TG4500</option>
+                    <option value="1" selected={{selectedProduct "1"}}>5500 Panasonic Display</option>
+                    <option value="2" selected={{selectedProduct "2"}}>5512D Panasonic</option>
+                    <option value="4" selected={{selectedProduct "4"}}>Motorola 4424LD+ Phone</option>
+                    <option value="5" selected={{selectedProduct "5"}}>Motorola 4450 DSS Console</option>
+                    <option value="3" selected={{selectedProduct "3"}}>Panasonic KX-TG4500</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="companyId">company name</label>
+                <select class="form-control" id="companyId" disabled>
+                    <option value="1" selected={{selectedCompany "1"}}>Company 1</option>
+                    <option value="2" selected={{selectedCompany "2"}}>Company 2</option>
+                    <option value="3" selected={{selectedCompany "3"}}>Company 3</option>
+                    <option value="4" selected={{selectedCompany "4"}}>Company 4</option>
+                    <option value="5" selected={{selectedCompany "5"}}>Company 5</option>
                 </select>
             </div>
             <label class="control-label" for="name">serial number</label>

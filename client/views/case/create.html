@@ -1,5 +1,10 @@
 <template name="createCase">
     <form class="main">
+        <input name="id" type="hidden" value="{{id}}"/>
+        <input name="companyId" type="hidden" value="{{companyId}}"/>
+        <input name="serialNumber" type="hidden" value="{{serialNumber}}"/>
+        <input name="modelNumber" type="hidden" value="{{modelNumber}}"/>
+        <input name="warrantyExpiryDate" type="hidden" value="{{warrantyExpiryDate}}"/>
         <label class="control-label" for="name">case</label>
         <div class="control-group">
             <label class="control-label" for="name">name</label>
