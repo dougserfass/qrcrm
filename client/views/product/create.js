@@ -1,3 +1,13 @@
+Template.createProduct.rendered = function(){
+    var picker = new Pikaday({
+        field: document.getElementById('warrantyExpiryDate'),
+        format: 'MM/DD/YYYY',
+        onSelect: function() {
+            console.log(this.getMoment().format('MM/DD/YYYY'));
+        }
+    });
+};
+
 Template.createProduct.events({
     'submit form': function(e) {
         e.preventDefault();
