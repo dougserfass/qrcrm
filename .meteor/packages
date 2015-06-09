@@ -13,3 +13,6 @@ sacha:spin
 iron:router
 bootstrap
 mizzao:bootboxjs
+mystor:device-detection
+mjn:famous
+gadicohen:famous-views

@@ -205,7 +205,8 @@ Template.createProduct.events({
         }
         var productId = Product.insert(product);
         Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-        Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
-        location.reload();
+        Router.go('readProduct', {_id: productId});
+        //Router.go('readQrCode', {}, { query: "url=" + encodeURIComponent(Router.routes.readProduct.url({ _id: productId })) });
+        //location.reload();
     }
 });

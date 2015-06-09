@@ -1,6 +1,9 @@
 <template name="readProduct">
     <form class="main">
         <label class="control-label" for="name">product</label>
+        <div id="qrcode"></div>
+        <button type="button" class="export btn" id="export">export</button>
+        <input id="url" type="hidden" value="{{url}}"/>
         <div class="control-group">
             <div class="form-group">
                 <label for="id">name</label>
@@ -26,6 +29,7 @@
             <div class="controls">
                 {{serialNumber}}
             </div>
+            <input id="serialNumber" type="hidden" value="{{serialNumber}}"/>
             <label class="control-label" for="name">model number</label>
             <div class="controls">
                 {{modelNumber}}
@@ -36,5 +40,11 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), document.getElementById('url').value);
+        function getSerialNumber() {
+            return document.getElementById('serialNumber').value;
+        }
+    </script>
     {{> createCase}}
 </template>
