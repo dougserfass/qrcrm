@@ -10,3 +10,6 @@ Meteor.publish('singleProduct', function(id) {
 Meteor.publish('singleCase', function(id) {
     return id && Case.find(id);
 });
+Meteor.publish('productImport', function(options) {
+    return ProductImport.find({}, options);
+});

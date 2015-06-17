@@ -21,4 +21,14 @@ Meteor.startup(function () {
             message: "message1"
         });
     }
+    if (ProductImport.find().count() === 0) {
+        ProductImport.insert({
+            id: "1",
+            companyId: "1",
+            serialNumber: "serialNumber1",
+            modelNumber: "modelNumber1",
+            warrantyExpiryDate: "",
+            url: ""
+        });
+    }
 });

@@ -198,8 +198,8 @@ Template.createCase.events({
         var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
             '?script=964'+
             '&deploy=1'+
-            '&compid=TSTDRV1291213'+
-            '&h=ce4725ce2a8e95a56553'+
+            '&compid=TSTDRV1310110'+
+            '&h=698100cbeefe005935e9'+
             '&recordtype=supportcase'+
             '&location=Oz'+
             '&company='+$(e.target).find('[name=companyId]').val()+

@@ -3,6 +3,7 @@ Houston.add_collection(Houston._admins);
 //Houston.add_collection(Meteor.roles);
 Houston.hide_collection(Software);
 Houston.add_collection(Product);
+Houston.add_collection(ProductImport);
 
 Houston.add_collection(Case);
 
