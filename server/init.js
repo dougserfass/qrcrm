@@ -5,7 +5,9 @@ Meteor.startup(function () {
     if (Product.find().count() === 0) {
         Product.insert({
             id: "1",
-            companyId: "1",
+            name: "name1",
+            customerId: "1",
+            customerName: "customerName1",
             serialNumber: "serialNumber1",
             modelNumber: "modelNumber1",
             warrantyExpiryDate: "",
@@ -24,7 +26,9 @@ Meteor.startup(function () {
     if (ProductImport.find().count() === 0) {
         ProductImport.insert({
             id: "1",
-            companyId: "1",
+            name: "name1",
+            customerId: "1",
+            customerName: "customerName1",
             serialNumber: "serialNumber1",
             modelNumber: "modelNumber1",
             warrantyExpiryDate: "",

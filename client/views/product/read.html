@@ -5,6 +5,7 @@
         <button type="button" class="export btn" id="export">export</button>
         <input id="url" type="hidden" value="{{url}}"/>
         <div class="control-group">
+<!--
             <div class="form-group">
                 <label for="id">name</label>
                 <select class="form-control" id="id" disabled>
@@ -16,14 +17,23 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="companyId">company name</label>
-                <select class="form-control" id="companyId" disabled>
-                    <option value="1" selected={{selectedCompany "1"}}>Company 1</option>
-                    <option value="2" selected={{selectedCompany "2"}}>Company 2</option>
-                    <option value="3" selected={{selectedCompany "3"}}>Company 3</option>
-                    <option value="4" selected={{selectedCompany "4"}}>Company 4</option>
-                    <option value="5" selected={{selectedCompany "5"}}>Company 5</option>
+                <label for="customerId">customer name</label>
+                <select class="form-control" id="customerId" disabled>
+                    <option value="1" selected={{selectedCustomer "1"}}>Customer 1</option>
+                    <option value="2" selected={{selectedCustomer "2"}}>Customer 2</option>
+                    <option value="3" selected={{selectedCustomer "3"}}>Customer 3</option>
+                    <option value="4" selected={{selectedCustomer "4"}}>Customer 4</option>
+                    <option value="5" selected={{selectedCustomer "5"}}>Customer 5</option>
                 </select>
+            </div>
+-->
+            <label class="control-label" for="name">name</label>
+            <div class="controls">
+                {{name}}
+            </div>
+            <label class="control-label" for="name">customer name</label>
+            <div class="controls">
+                {{customerName}}
             </div>
             <label class="control-label" for="name">serial number</label>
             <div class="controls">

@@ -1,5 +1,6 @@
 Meteor.startup(function () {
     Meteor.subscribe('productImport')
+    Meteor.subscribe('productImportCounter')
 })
 
 Template.importProduct.helpers({
@@ -15,13 +16,18 @@ Template.importProduct.helpers({
             for (var i = 0; i < productImports.length; i++) {
                 var productImport = {
                     id: productImports[i].itemID,
-                    companyId: productImports[i].customerID,
+                    name: productImports[i].itemName,
+                    customerId: productImports[i].customerID,
+                    customerName: productImports[i].customerName,
                     serialNumber: productImports[i].serialNo,
                     modelNumber: '',
                     warrantyExpiryDate: productImports[i].warrantyExpDate,
                     url: ''
                 };
-                ProductImport.insert(productImport);
+                var productImportId = ProductImport.insert(productImport);
+                var productId = Product.insert(productImport);
+                ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+                Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
             }
             Router.go('readProductImport');
         };

@@ -1,3 +1,5 @@
 <template name="readProductImport">
+    <br>
+    <b>{{getPublishedCount 'productImportCount'}}</b> products imported.
     {{> reactiveTable collection=productImports}}
 </template>

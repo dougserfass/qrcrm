@@ -13,3 +13,6 @@ Meteor.publish('singleCase', function(id) {
 Meteor.publish('productImport', function(options) {
     return ProductImport.find({}, options);
 });
+Meteor.publish('productImportCounter', function() {
+    Counts.publish(this, 'productImportCount', ProductImport.find());
+});

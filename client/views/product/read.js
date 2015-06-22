@@ -5,8 +5,8 @@ Template.readProduct.helpers({
         }
         return false;
     },
-    selectedCompany: function(companyId) {
-        if(companyId==this.companyId){
+    selectedCustomer: function(customerId) {
+        if(customerId==this.customerId){
             return true;
         }
         return false;
