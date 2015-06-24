@@ -35,7 +35,8 @@ Template.importProduct.helpers({
             '?script=965'+
             '&deploy=1'+
             '&compid=TSTDRV1310110'+
-            '&h=8bd74adbbdab4c43cec7';
+            '&h=8bd74adbbdab4c43cec7'+
+            '&qrrecordids=';
         var data = '';
         $.ajax({
             url: url,
