@@ -1,4 +1,5 @@
 <template name="createCase">
+<!--
     <form class="main">
         <input name="id" type="hidden" value="{{id}}"/>
         <input name="customerId" type="hidden" value="{{customerId}}"/>
@@ -14,9 +15,6 @@
             <label class="control-label" for="name">phone 1234567890</label>
             <div class="controls">
                 <input name="phone" type="tel" value="" placeholder="phone" pattern="\d{10,10}">
-<!--
-                <input name="phone" type="number" value="" placeholder="phone"/>
--->
             </div>
             <label class="control-label" for="name">email</label>
             <div class="controls">
@@ -33,4 +31,70 @@
             </div>
         </div>
   </form>
+-->
+
+
+
+    <form class="form-horizontal" role="form">
+
+        <input name="id" type="hidden" value="{{id}}"/>
+        <input name="customerId" type="hidden" value="{{customerId}}"/>
+        <input name="serialNumber" type="hidden" value="{{serialNumber}}"/>
+        <input name="modelNumber" type="hidden" value="{{modelNumber}}"/>
+        <input name="warrantyExpiryDate" type="hidden" value="{{warrantyExpiryDate}}"/>
+
+
+
+        <div class="form-group">
+
+
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-user"></span>
+                <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+        </div>
+
+
+<!--
+        <div class="form-group">
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-briefcase"></span>
+                <input type="text" class="form-control" id="company" placeholder="Company">
+            </div>
+        </div>
+-->
+
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-earphone"></span> (Format: 5015551212)
+                <input type="tel" class="form-control" name="phone" placeholder="Phone" pattern="\d{10,10}">
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <textarea class="form-control" rows="5" name="message" placeholder="Issue Description"></textarea>
+            </div>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-danger btn-block"/>
+        <!--
+        <button type="button" class="btn btn-danger btn-block">Submit</button>
+        -->
+        <br/>
+    </form>
+
+
+
+
 </template>
