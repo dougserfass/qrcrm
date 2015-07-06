@@ -1,4 +1,6 @@
 <template name="defaultHeader">
+    {{#if isPhone}}
+    {{else}}
     <a class="brand" href="{{pathFor 'defaultLanding'}}">qrcrm</a>
     <a class="btn" type="button" href="{{pathFor 'defaultLanding'}}">home</a>
     {{#if currentUser}}
@@ -16,4 +18,5 @@
 -->
     {{/if}}
     {{> loginButtons align="left"}}
+    {{/if}}
 </template>

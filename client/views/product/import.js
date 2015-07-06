@@ -5,26 +5,26 @@ Meteor.startup(function () {
 
 Template.importProduct.helpers({
     productImports: function () {
-
         var self = this;
-
-        var pi;
-
+        var productImports;
         var callback = function (data) {
+/*
             var productImportArray = ProductImport.find().fetch();
             for (var i = 0; i < productImportArray.length; i++) {
                 ProductImport.remove(productImportArray[i]._id);
             }
+*/
             console.log('data 1='+JSON.stringify(data));
-            var productImports = JSON.parse(data);
-            self.pi = JSON.parse(data);
+            //var productImports = JSON.parse(data);
+            self.productImports = JSON.parse(data);
             var qrrecordids = '';
-            for (var i = 0; i < productImports.length; i++) {
+            for (var i = 0; i < self.productImports.length; i++) {
                 if(i == 0) {
-                    qrrecordids = productImports[i].QRRecordID;
+                    qrrecordids = self.productImports[i].QRRecordID;
                 } else {
-                    qrrecordids = qrrecordids + '|' + productImports[i].QRRecordID;
+                    qrrecordids = qrrecordids + '|' + self.productImports[i].QRRecordID;
                 }
+/*
                 var productImport = {
                     id: productImports[i].itemID,
                     name: productImports[i].itemName,
@@ -39,23 +39,34 @@ Template.importProduct.helpers({
                 var productId = Product.insert(productImport);
                 ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
                 Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+*/
             }
             console.log('qrrecordids='+qrrecordids);
-
             var callback = function (data) {
-
                 console.log('data 2='+JSON.stringify(data));
-
-                console.log('data 3='+JSON.parse(data).IDsSynced);
-
-                console.log('self.pi='+self.pi);
-
-
-                //var idsSynced = JSON.parse(data);
-
-
+                console.log('IDsSynced='+JSON.parse(data).IDsSynced);
+                //console.log('self.productImports='+self.productImports);
+                var productImportArray = ProductImport.find().fetch();
+                for (var i = 0; i < productImportArray.length; i++) {
+                    ProductImport.remove(productImportArray[i]._id);
+                }
+                for (var i = 0; i < self.productImports.length; i++) {
+                     var productImport = {
+                         id: self.productImports[i].itemID,
+                         name: self.productImports[i].itemName,
+                         customerId: self.productImports[i].customerID,
+                         customerName: self.productImports[i].customerName,
+                         serialNumber: self.productImports[i].serialNo,
+                         modelNumber: '',
+                         warrantyExpiryDate: self.productImports[i].warrantyExpDate,
+                         url: ''
+                     };
+                     var productImportId = ProductImport.insert(productImport);
+                     var productId = Product.insert(productImport);
+                     ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+                     Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+                }
             };
-
             var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
                 '?script=965'+
                 '&deploy=1'+
@@ -71,10 +82,6 @@ Template.importProduct.helpers({
                 success: callback,
                 error: callback
             });
-
-
-
-
             Router.go('readProductImport');
         };
         var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
