@@ -1,4 +1,6 @@
 <template name="defaultFooter">
+    {{#if isPhone}}
+    {{else}}
 <!--
     qrcrm &copy; NK, LLC 2015
 -->
@@ -13,4 +15,5 @@
         <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%"></div>
         <div class="progress-bar progress-bar" role="progressbar" style="width:25%"></div>
     </div>
+    {{/if}}
 </template>

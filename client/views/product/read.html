@@ -59,21 +59,17 @@
     </script>
 -->
 
+<!--
     <div class="container">
-
-
-
-
+-->
         <div class="page-header">
             <h2>LODGE YOUR CASE</h2>
         </div>
-
-
         <div class="jumbotron">
             <h5>{{customerName}}</h5>
-
             <table class="table">
                 <tr>
+                    <td width="20%" valign="middle" align="center"><div id="qrcode"></div><button type="button" class="export btn" id="export">export</button></td>
                     <td>
                         <table class="table table-bordered">
                             <tr><td>{{name}}</td></tr>
@@ -82,21 +78,22 @@
                             <tr><td>Warranty Expiry Date: {{warrantyExpiryDate}}</td></tr>
                         </table>
                     </td>
-                    <td width="20%" valign="middle" align="center"> <img src="http://screenshots.en.sftcdn.net/en/scrn/84000/84357/wolverine-wallpaper-4.jpg" class="img-thumbnail" alt="Product Image"> </td>
+                    <td width="20%" valign="middle" align="center"><img src="http://screenshots.en.sftcdn.net/en/scrn/84000/84357/wolverine-wallpaper-4.jpg" class="img-thumbnail" alt="Product Image"></td>
                 </tr>
             </table>
-
         </div>
-
-
-
-
-
+        <input id="url" type="hidden" value="{{url}}"/>
+        <input id="serialNumber" type="hidden" value="{{serialNumber}}"/>
+<!--
     </div>
-
-
-
-
+-->
     {{> createCase}}
+
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), {text: document.getElementById('url').value, width: 128, height: 128});
+        function getSerialNumber() {
+            return document.getElementById('serialNumber').value;
+        }
+    </script>
 
 </template>

@@ -19,7 +19,6 @@ deps@1.0.7-rc.0
 ejson@1.0.6-rc.0
 email@1.0.6-rc.0
 fastclick@1.0.3-rc.0
-flowkey:bigscreen@1.0.1
 gadicohen:famous-views@0.2.2
 geojson-utils@1.0.3-rc.0
 houston:admin@2.0.3
