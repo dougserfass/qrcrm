@@ -14,7 +14,7 @@ Template.importProduct.helpers({
                 ProductImport.remove(productImportArray[i]._id);
             }
 */
-            console.log('data 1='+JSON.stringify(data));
+            //console.log('data 1='+JSON.stringify(data));
             //var productImports = JSON.parse(data);
             self.productImports = JSON.parse(data);
             var qrrecordids = '';
@@ -41,30 +41,41 @@ Template.importProduct.helpers({
                 Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
 */
             }
-            console.log('qrrecordids='+qrrecordids);
+            //console.log('qrrecordids='+qrrecordids);
             var callback = function (data) {
-                console.log('data 2='+JSON.stringify(data));
-                console.log('IDsSynced='+JSON.parse(data).IDsSynced);
+                //console.log('data 2='+JSON.stringify(data));
+                //console.log('IDsSynced='+JSON.parse(data).IDsSynced);
+                if (JSON.parse(data).IDsSynced === undefined) {
+                    ;
+                } else {
+                    var idsSynced = JSON.parse(data).IDsSynced.split("|");
+                }
+                var position;
                 //console.log('self.productImports='+self.productImports);
+/*
                 var productImportArray = ProductImport.find().fetch();
                 for (var i = 0; i < productImportArray.length; i++) {
                     ProductImport.remove(productImportArray[i]._id);
                 }
+*/
                 for (var i = 0; i < self.productImports.length; i++) {
-                     var productImport = {
-                         id: self.productImports[i].itemID,
-                         name: self.productImports[i].itemName,
-                         customerId: self.productImports[i].customerID,
-                         customerName: self.productImports[i].customerName,
-                         serialNumber: self.productImports[i].serialNo,
-                         modelNumber: '',
-                         warrantyExpiryDate: self.productImports[i].warrantyExpDate,
-                         url: ''
-                     };
-                     var productImportId = ProductImport.insert(productImport);
-                     var productId = Product.insert(productImport);
-                     ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-                     Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
+                    position = idsSynced.indexOf(self.productImports[i].QRRecordID);
+                    if (position != -1) {
+                        var productImport = {
+                            id: self.productImports[i].itemID,
+                            name: self.productImports[i].itemName,
+                            customerId: self.productImports[i].customerID,
+                            customerName: self.productImports[i].customerName,
+                            serialNumber: self.productImports[i].serialNo,
+                            modelNumber: '',
+                            warrantyExpiryDate: self.productImports[i].warrantyExpDate,
+                            url: ''
+                        };
+                        var productImportId = ProductImport.insert(productImport);
+                        var productId = Product.insert(productImport);
+                        ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({_id: productId})}});
+                        Product.update(productId, {$set: {url: Router.routes.readProduct.url({_id: productId})}});
+                    }
                 }
             };
             var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
@@ -99,6 +110,10 @@ Template.importProduct.helpers({
             success: callback,
             error: callback
         });
+        var productImportArray = ProductImport.find().fetch();
+        for (var i = 0; i < productImportArray.length; i++) {
+            ProductImport.remove(productImportArray[i]._id);
+        }
         return ProductImport.find();
     }
 })
