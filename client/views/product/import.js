@@ -52,12 +52,12 @@ Template.importProduct.helpers({
                 }
                 var position;
                 //console.log('self.productImports='+self.productImports);
-/*
+
                 var productImportArray = ProductImport.find().fetch();
                 for (var i = 0; i < productImportArray.length; i++) {
                     ProductImport.remove(productImportArray[i]._id);
                 }
-*/
+
                 for (var i = 0; i < self.productImports.length; i++) {
                     position = idsSynced.indexOf(self.productImports[i].QRRecordID);
                     if (position != -1) {
@@ -81,8 +81,8 @@ Template.importProduct.helpers({
             var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
                 '?script=965'+
                 '&deploy=1'+
-                '&compid=TSTDRV1310110'+
-                '&h=8bd74adbbdab4c43cec7'+
+                '&compid=TSTDRV1329066'+
+                '&h=715a95ad5644f654297e'+
                 '&qrrecordids='+qrrecordids;
             var data = '';
             $.ajax({
@@ -98,8 +98,8 @@ Template.importProduct.helpers({
         var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
             '?script=965'+
             '&deploy=1'+
-            '&compid=TSTDRV1310110'+
-            '&h=8bd74adbbdab4c43cec7'+
+            '&compid=TSTDRV1329066'+
+            '&h=715a95ad5644f654297e'+
             '&qrrecordids=';
         var data = '';
         $.ajax({
@@ -110,10 +110,12 @@ Template.importProduct.helpers({
             success: callback,
             error: callback
         });
+/*
         var productImportArray = ProductImport.find().fetch();
         for (var i = 0; i < productImportArray.length; i++) {
             ProductImport.remove(productImportArray[i]._id);
         }
+*/
         return ProductImport.find();
     }
 })

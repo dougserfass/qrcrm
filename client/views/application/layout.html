@@ -1,9 +1,23 @@
 <template name="layout">
-    <div class="container-fluid">
-        {{> defaultHeader}}
-        <div id="main" class="row-fluid">
-            {{> yield}}
+    {{#if isPhone}}
+        {{#HeaderFooterLayout size="[undefined,undefined]" headerSize="50" footerSize="50"}}
+            {{#Surface target="header" class="white-bg"}}
+                {{> defaultHeader}}
+            {{/Surface}}
+            {{#Surface target="content" class="white-bg"}}
+                {{> yield}}
+            {{/Surface}}
+            {{#Surface target="footer" class="white-bg"}}
+                {{> defaultFooter}}
+            {{/Surface}}
+        {{/HeaderFooterLayout}}
+    {{else}}
+        <div class="container-fluid">
+            {{> defaultHeader}}
+            <div id="main" class="row-fluid">
+                {{> yield}}
+            </div>
+            {{> defaultFooter}}
         </div>
-        {{> defaultFooter}}
-    </div>
+    {{/if}}
 </template>
