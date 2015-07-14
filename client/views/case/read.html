@@ -1,14 +1,12 @@
 <template name="readCase">
 
-    <div class="jumbotron">
 <!--
-    <form class="main">
--->
+
+    <div class="jumbotron">
+
         <label class="control-label" for="name">case</label>
         <div class="control-group">
-<!--
-            <label class="control-label" for="name">number</label>
--->
+
             <div class="controls">
                 A support case no. {{number}} has been created. Thank you!
             </div>
@@ -29,9 +27,27 @@
                 {{message}}
             </div>
         </div>
-<!--
-    </form>
--->
+
 
     </div>
+
+-->
+
+
+    <h5>A support case no. {{number}} has been created. Thank you!</h5>
+    <table class="table">
+        <tr>
+            <td>
+                <table class="table table-bordered">
+                    <tr><td>{{name}}</td></tr>
+                    <tr><td>{{phone}}</td></tr>
+                    <tr><td>{{email}}</td></tr>
+                    <tr><td>{{message}}</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+
 </template>

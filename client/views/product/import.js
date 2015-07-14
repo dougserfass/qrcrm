@@ -8,14 +8,7 @@ Template.importProduct.helpers({
         var self = this;
         var productImports;
         var callback = function (data) {
-/*
-            var productImportArray = ProductImport.find().fetch();
-            for (var i = 0; i < productImportArray.length; i++) {
-                ProductImport.remove(productImportArray[i]._id);
-            }
-*/
             //console.log('data 1='+JSON.stringify(data));
-            //var productImports = JSON.parse(data);
             self.productImports = JSON.parse(data);
             var qrrecordids = '';
             for (var i = 0; i < self.productImports.length; i++) {
@@ -24,22 +17,6 @@ Template.importProduct.helpers({
                 } else {
                     qrrecordids = qrrecordids + '|' + self.productImports[i].QRRecordID;
                 }
-/*
-                var productImport = {
-                    id: productImports[i].itemID,
-                    name: productImports[i].itemName,
-                    customerId: productImports[i].customerID,
-                    customerName: productImports[i].customerName,
-                    serialNumber: productImports[i].serialNo,
-                    modelNumber: '',
-                    warrantyExpiryDate: productImports[i].warrantyExpDate,
-                    url: ''
-                };
-                var productImportId = ProductImport.insert(productImport);
-                var productId = Product.insert(productImport);
-                ProductImport.update(productImportId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-                Product.update(productId, {$set: {url: Router.routes.readProduct.url({ _id: productId })}});
-*/
             }
             //console.log('qrrecordids='+qrrecordids);
             var callback = function (data) {
@@ -52,12 +29,10 @@ Template.importProduct.helpers({
                 }
                 var position;
                 //console.log('self.productImports='+self.productImports);
-
                 var productImportArray = ProductImport.find().fetch();
                 for (var i = 0; i < productImportArray.length; i++) {
                     ProductImport.remove(productImportArray[i]._id);
                 }
-
                 for (var i = 0; i < self.productImports.length; i++) {
                     position = idsSynced.indexOf(self.productImports[i].QRRecordID);
                     if (position != -1) {
@@ -94,6 +69,7 @@ Template.importProduct.helpers({
                 error: callback
             });
             Router.go('readProductImport');
+            //return ProductImport.find();
         };
         var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
             '?script=965'+
@@ -110,12 +86,6 @@ Template.importProduct.helpers({
             success: callback,
             error: callback
         });
-/*
-        var productImportArray = ProductImport.find().fetch();
-        for (var i = 0; i < productImportArray.length; i++) {
-            ProductImport.remove(productImportArray[i]._id);
-        }
-*/
         return ProductImport.find();
     }
 })

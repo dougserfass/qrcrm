@@ -1,5 +1,6 @@
 <template name="layout">
     {{#if isPhone}}
+        <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no">
         {{#HeaderFooterLayout size="[undefined,undefined]" headerSize="50" footerSize="50"}}
             {{#Surface target="header" class="white-bg"}}
                 {{> defaultHeader}}
