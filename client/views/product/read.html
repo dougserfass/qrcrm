@@ -90,6 +90,8 @@
     </div>
 -->
 
+
+<!--
     <h5>{{customerName}}</h5>
     <table class="table">
         <tr>
@@ -103,18 +105,42 @@
             </td>
         </tr>
     </table>
+-->
+
+    <table class="table">
+
+
+        <tbody>
+        <tr class="pname"><td><h3>{{name}}</h3></td></tr>
+        <tr>
+            <td width="60%" align="left"><li>Serial No. {{serialNumber}}</li>
+                <li>Warranty &nbsp; {{warrantyExpiryDate}}</li></td>
+        </tr>
+        {{#if isDesktop}}
+            <tr>
+                <td>
+                    <div id="qrcode"></div>
+                    <button type="button" class="export btn" id="export">export</button>
+                </td>
+            </tr>
+        {{/if}}
+        </tbody></table>
+
 
     {{> createCase}}
 
 
+    {{#if isDesktop}}
+        <input id="url" type="hidden" value="{{url}}"/>
+        <input id="serialNumber" type="hidden" value="{{serialNumber}}"/>
+        <script type="text/javascript">
 
-    <script type="text/javascript">
-/*
-        new QRCode(document.getElementById("qrcode"), {text: document.getElementById('url').value, width: 128, height: 128});
-        function getSerialNumber() {
-            return document.getElementById('serialNumber').value;
-        }
-*/
-    </script>
+            new QRCode(document.getElementById("qrcode"), {text: document.getElementById('url').value, width: 128, height: 128});
+            function getSerialNumber() {
+                return document.getElementById('serialNumber').value;
+            }
+
+        </script>
+    {{/if}}
 
 </template>

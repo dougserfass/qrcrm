@@ -1,6 +1,8 @@
+<!--
 <template name="layout">
     {{#if isPhone}}
         <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no">
+        <div class="container-fluid">
         {{#HeaderFooterLayout size="[undefined,undefined]" headerSize="50" footerSize="50"}}
             {{#Surface target="header" class="white-bg"}}
                 {{> defaultHeader}}
@@ -12,6 +14,7 @@
                 {{> defaultFooter}}
             {{/Surface}}
         {{/HeaderFooterLayout}}
+        </div>
     {{else}}
         <div class="container-fluid">
             {{> defaultHeader}}
@@ -21,4 +24,29 @@
             {{> defaultFooter}}
         </div>
     {{/if}}
+</template>
+-->
+
+<template name="layout">
+    <div class="container-fluid">
+        {{#if isPhone}}
+            {{#HeaderFooterLayout size="[undefined,undefined]" headerSize="1" footerSize="1"}}
+                {{#Surface target="header" class="white-bg"}}
+                    {{> defaultHeader}}
+                {{/Surface}}
+                {{#Surface target="content" class="white-bg"}}
+                    {{> yield}}
+                {{/Surface}}
+                {{#Surface target="footer" class="white-bg"}}
+                    {{> defaultFooter}}
+                {{/Surface}}
+            {{/HeaderFooterLayout}}
+        {{else}}
+                {{> defaultHeader}}
+                <div id="main" class="row-fluid">
+                    {{> yield}}
+                </div>
+                {{> defaultFooter}}
+        {{/if}}
+    </div>
 </template>

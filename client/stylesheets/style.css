@@ -150,3 +150,32 @@ body, input, select, textarea {
     font-family: 'Open Sans', 'Droid Sans', sans-serif;
 }
 
+.btn, input[type=submit] {
+    background: #4999FF;
+    color: black;
+}
+
+.pname {
+    padding-top: 0px;
+    background: #4999FF;
+    text-align: center;
+    color: white;
+    font-family: Times;
+}
+
+.pname2 {
+    padding: 3px;
+    text-align: center;
+
+}
+
+tbody {
+
+    background: #4999FF;
+    color: white;
+
+}
+
+.box2 div { position: absolute; top:50%; left:50%;}
+
+.box2 h3{position: relative; top: -50%; left:-50%;}
