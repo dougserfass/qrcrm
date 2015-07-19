@@ -1,5 +1,6 @@
 Template.createCase.events({
-    'submit form': function(e) {
+    //'submit form': function(e) {
+    'click #submit': function(e) {
         e.preventDefault();
 /*
         var accessToken = 'eba13be7f960d1593d40e4b44b4ed929e41c91b5';
