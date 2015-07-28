@@ -37,7 +37,8 @@ Template.importProduct.helpers({
                     position = idsSynced.indexOf(self.productImports[i].QRRecordID);
                     if (position != -1) {
                         var productImport = {
-                            id: self.productImports[i].itemID,
+                            oemSerialNumberId: self.productImports[i].QRRecordID,
+                            itemId: self.productImports[i].itemID,
                             name: self.productImports[i].itemName,
                             customerId: self.productImports[i].customerID,
                             customerName: self.productImports[i].customerName,
