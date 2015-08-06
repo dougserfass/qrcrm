@@ -191,8 +191,8 @@ Template.createCase.events({
                 message: $(e.target).find('[name=message]').val()
             }
             var caseId = Case.insert(aCase);
-            //alert('A support case no. '+aCase.number+' has been created. Thank you!');
-            Router.go('readCase', {_id: caseId});
+            alert('A support case no. '+aCase.number+' has been created. Thank you!');
+            //Router.go('readCase', {_id: caseId});
             //location.reload();
         };
         //url: "https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl?script=964&deploy=1&compid=TSTDRV1291213&h=ce4725ce2a8e95a56553&recordtype=supportcase&s_no=909&model_no=ABC000123&location=Oz&inc_mess=TestforSuiteleteCall&product=3",
