@@ -116,7 +116,7 @@
     </form>
 -->
 
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" onsubmit="buttonSubmit.disabled=true; return true;">
 
         <input name="id" type="hidden" value="{{oemSerialNumberId}}"/>
         <input name="customerId" type="hidden" value="{{customerId}}"/>
@@ -157,7 +157,7 @@
             </div>
         </div>
 
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" name="buttonSubmit"/>
 
 <!--
         <button type="button" class="btn btn-info btn-block" id="submit"><h4>Submit</h4></button>

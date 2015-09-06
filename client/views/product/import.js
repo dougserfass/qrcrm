@@ -57,8 +57,8 @@ Template.importProduct.helpers({
             var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
                 '?script=965'+
                 '&deploy=1'+
-                '&compid=TSTDRV1329066'+
-                '&h=715a95ad5644f654297e'+
+                '&compid=TSTDRV1376166'+
+                '&h=76f084d9da3d010ec3b3'+
                 '&qrrecordids='+qrrecordids;
             var data = '';
             $.ajax({
@@ -75,8 +75,8 @@ Template.importProduct.helpers({
         var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
             '?script=965'+
             '&deploy=1'+
-            '&compid=TSTDRV1329066'+
-            '&h=715a95ad5644f654297e'+
+            '&compid=TSTDRV1376166'+
+            '&h=76f084d9da3d010ec3b3'+
             '&qrrecordids=';
         var data = '';
         $.ajax({
