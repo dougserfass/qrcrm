@@ -1,10 +1,16 @@
+Meteor.startup(function () {
+  Meteor.subscribe('productImport');
+  Meteor.subscribe('productImportCounter');
+  Meteor.subscribe('productExport');
+  Meteor.subscribe('productExportCounter');
+});
+
 Template.defaultHeader.events({
   'click #importProduct': function(e) {
     e.preventDefault();
     var self = this;
     var productImports;
     var callback = function (data) {
-      //console.log('data 1='+JSON.stringify(data));
       self.productImports = JSON.parse(data);
       var qrrecordids = '';
       for (var i = 0; i < self.productImports.length; i++) {
@@ -14,17 +20,13 @@ Template.defaultHeader.events({
           qrrecordids = qrrecordids + '|' + self.productImports[i].QRRecordID;
         }
       }
-      //console.log('qrrecordids='+qrrecordids);
       var callback = function (data) {
-        //console.log('data 2='+JSON.stringify(data));
-        //console.log('IDsSynced='+JSON.parse(data).IDsSynced);
         if (JSON.parse(data).IDsSynced === undefined) {
           ;
         } else {
           var idsSynced = JSON.parse(data).IDsSynced.split("|");
         }
         var position;
-        //console.log('self.productImports='+self.productImports);
         var productImportArray = ProductImport.find().fetch();
         for (var i = 0; i < productImportArray.length; i++) {
           ProductImport.remove(productImportArray[i]._id);
@@ -65,8 +67,6 @@ Template.defaultHeader.events({
         success: callback,
         error: callback
       });
-      //Router.go('readProductImport');
-      //return ProductImport.find();
     };
     var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
       '?script=965'+
@@ -83,41 +83,61 @@ Template.defaultHeader.events({
       success: callback,
       error: callback
     });
-    //return ProductImport.find();
   },
   'click #exportProduct': function(e) {
     e.preventDefault();
+    var product, products;
+    products = ProductExport.find().fetch();
+    var remaining = products.length;
+    var i = -1;
     var doc = new jsPDF();
-    doc.text(10, 10, this.title);
-    doc.text(10, 20, "Submitted by " + this.author);
-    if (this.isPublished) {
-      doc.text(10, 30, "Published");
-    } else {
-      doc.text(10, 30, "Unpublished");
-    }
-    var splitDescription = doc.splitTextToSize(this.body, 180);
-    doc.text(10, 40, splitDescription);
-    var frame, frames, _i, _len, jsonData;
-    frames = Frames.find({storyboardId: this._id}, { sort: {rank: 1}}).fetch();
-    for (_i = 0, _len = frames.length; _i < _len; _i++) {
-      doc.addPage();
-      frame = frames[_i];
-      doc.text(10, 10, "Frame number: "+frame.rank);
-      jsonData = frame.fJson;
-      var $$ = function(id){return document.getElementById(id)};
-      $('#export-frame').replaceWith("<canvas id='e' width='750' height='500' style='visibility: hidden; display: none;'></canvas>");
-      var canvas = this.__canvas = new fabric.Canvas('e');
-      canvas.clear();
-      canvas.loadFromJSON(jsonData,canvas.renderAll.bind(canvas));
-      canvas.setBackgroundColor('rgba(255, 255, 255, 255)', canvas.renderAll.bind(canvas));
-      var imgData = canvas.toDataURL({
-        format: 'jpeg',
-        quality: 1.0
+    function nextStep(){
+      i++;
+      if(i == products.length) return;
+      product = products[i];
+      new QRCode("qrcode", {text: product.url, width: 128, height: 128});
+      html2canvas(document.getElementById("qrcode"), {
+        background :'#FFFFFF',
+        onrendered: function(canvas) {
+          var imgData = canvas.toDataURL('image/jpeg');
+          doc.addImage(imgData, 'JPEG', 10, 10);
+          remaining--;
+          if (remaining === 0) {
+            doc.save('export.pdf');
+          } else {
+            doc.addPage();
+            $('#qrcode').empty();
+            nextStep();
+          }
+        }
       });
-      doc.addImage(imgData, 'JPEG', 10, 20);
-      var splitFrameDescription = doc.splitTextToSize(frame.body, 180);
-      doc.text(10, 160, splitFrameDescription);
     }
-    doc.save('storyboard.pdf');
+    nextStep();
   }
+  /*,
+  'click #exportProduct': function(e) {
+    e.preventDefault();
+    var doc = new jsPDF();
+    var frame, frames, _i, _len;
+    frames = ProductExport.find().fetch();
+    var remaining = frames.length;
+    for (_i = 0, _len = frames.length; _i < _len; _i++) {
+      frame = frames[_i];
+      new QRCode("qrcode", {text: frame.url, width: 128, height: 128});
+      html2canvas(document.getElementById("qrcode"), {
+        background :'#FFFFFF',
+        onrendered: function(canvas) {
+          var imgData = canvas.toDataURL('image/jpeg');
+          doc.addImage(imgData, 'JPEG', 10, 10);
+          remaining--;
+          if (remaining === 0)
+          {
+            doc.save('export.pdf');
+          }
+          doc.addPage();
+          //$('#qrcode').empty();
+        }
+      });
+    }
+  }*/
 });

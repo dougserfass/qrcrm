@@ -20,11 +20,15 @@
         <a class="btn" type="button" href="{{pathFor 'createProduct'}}">product</a>
 -->
         <button type="button" class="btn" id="importProduct">import <b>{{getPublishedCount 'productImportCount'}}</b></button>
+        <button type="button" class="btn" id="exportProduct">export <b>{{getPublishedCount 'productExportCount'}}</b></button>
         <!--<a class="btn" type="button" href="{{pathFor 'importProduct'}}">import
         <b>{{getPublishedCount 'productImportCount'}}</b></a>-->
 <!--
         <a class="btn" type="button" href="{{pathFor 'hW'}}">Hello World</a>
 -->
+        <!--<div id="qrcode" style="display: none;"></div>-->
+        <!--<div id="qrcode"></div>-->
+
     {{/if}}
 
     {{> loginButtons align="left"}}

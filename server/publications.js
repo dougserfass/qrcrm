@@ -16,3 +16,9 @@ Meteor.publish('productImport', function(options) {
 Meteor.publish('productImportCounter', function() {
     Counts.publish(this, 'productImportCount', ProductImport.find());
 });
+Meteor.publish('productExport', function(options) {
+  return ProductExport.find({}, options);
+});
+Meteor.publish('productExportCounter', function() {
+  Counts.publish(this, 'productExportCount', ProductExport.find());
+});

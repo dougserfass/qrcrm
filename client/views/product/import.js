@@ -1,7 +1,7 @@
-Meteor.startup(function () {
+/*Meteor.startup(function () {
     Meteor.subscribe('productImport')
     Meteor.subscribe('productImportCounter')
-})
+})*/
 
 Template.importProduct.helpers({
     productImports: function () {

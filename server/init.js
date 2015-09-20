@@ -37,4 +37,17 @@ Meteor.startup(function () {
             url: ""
         });
     }
+    if (ProductExport.find().count() === 0) {
+      ProductExport.insert({
+        oemSerialNumberId: "oemSerialNumberId1",
+        itemId: "itemId1",
+        name: "name1",
+        customerId: "customerId1",
+        customerName: "customerName1",
+        serialNumber: "serialNumber1",
+        modelNumber: "modelNumber1",
+        warrantyExpiryDate: "",
+        url: ""
+      });
+    }
 });
