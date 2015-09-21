@@ -7,6 +7,9 @@ Meteor.publish("user", function () {
 Meteor.publish('singleProduct', function(id) {
     return id && Product.find(id);
 });
+Meteor.publish('allProducts', function(options) {
+  return Product.find({}, options);
+});
 Meteor.publish('singleCase', function(id) {
     return id && Case.find(id);
 });

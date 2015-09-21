@@ -3,6 +3,7 @@ Meteor.startup(function () {
   Meteor.subscribe('productImportCounter');
   Meteor.subscribe('productExport');
   Meteor.subscribe('productExportCounter');
+  Meteor.subscribe('allProducts');
 });
 
 Template.defaultHeader.events({
@@ -86,26 +87,63 @@ Template.defaultHeader.events({
   },
   'click #exportProduct': function(e) {
     e.preventDefault();
+    var productExportArray = ProductExport.find().fetch();
+    for (var i = 0; i < productExportArray.length; i++) {
+      ProductExport.remove(productExportArray[i]._id);
+    }
+    var aProduct;
+    var productArray = Product.find().fetch();
+    for (var i = 0; i < productArray.length; i++) {
+      aProduct = productArray[i];
+      var productExport = {
+        oemSerialNumberId: aProduct.oemSerialNumberId,
+        itemId: aProduct.itemId,
+        name: aProduct.name,
+        customerId: aProduct.customerId,
+        customerName: aProduct.customerName,
+        serialNumber: aProduct.serialNumber,
+        modelNumber: aProduct.modelNumber,
+        warrantyExpiryDate: aProduct.warrantyExpiryDate,
+        url: aProduct.url
+      };
+      ProductExport.insert(productExport);
+    }
     var product, products;
     products = ProductExport.find().fetch();
     var remaining = products.length;
     var i = -1;
+    var col = 5;
+    var row = 5;
+    $('#qrcode').empty();
     var doc = new jsPDF();
     function nextStep(){
       i++;
       if(i == products.length) return;
       product = products[i];
-      new QRCode("qrcode", {text: product.url, width: 128, height: 128});
+      new QRCode("qrcode", {text: product.url, width: 64, height: 64});
       html2canvas(document.getElementById("qrcode"), {
         background :'#FFFFFF',
         onrendered: function(canvas) {
           var imgData = canvas.toDataURL('image/jpeg');
-          doc.addImage(imgData, 'JPEG', 10, 10);
+
+          doc.setFontSize(5);
+          doc.text(col, row-1, product.oemSerialNumberId + " " + product.warrantyExpiryDate);
+          doc.addImage(imgData, 'JPEG', col, row);
+          doc.setFontSize(3);
+          doc.text(col, row+18, product.customerName);
+
+          col = col + 25;
+          if( col > 200 ) {
+            col = 5;
+            row = row + 25;
+          }
+
+
           remaining--;
           if (remaining === 0) {
             doc.save('export.pdf');
           } else {
-            doc.addPage();
+            //doc.addPage();
             $('#qrcode').empty();
             nextStep();
           }
