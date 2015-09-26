@@ -87,6 +87,88 @@ Template.defaultHeader.events({
   },
   'click #exportProduct': function(e) {
     e.preventDefault();
+    var self = this;
+    var productExports;
+    var callback = function (data) {
+      self.productExports = JSON.parse(data);
+      var productExportArray = ProductExport.find().fetch();
+      for (var i = 0; i < productExportArray.length; i++) {
+        ProductExport.remove(productExportArray[i]._id);
+      }
+      var aProduct;
+      var productArray = Product.find({oemSerialNumberId: {$in: self.productExports}}).fetch();
+      for (var i = 0; i < productArray.length; i++) {
+        aProduct = productArray[i];
+        var productExport = {
+          oemSerialNumberId: aProduct.oemSerialNumberId,
+          itemId: aProduct.itemId,
+          name: aProduct.name,
+          customerId: aProduct.customerId,
+          customerName: aProduct.customerName,
+          serialNumber: aProduct.serialNumber,
+          modelNumber: aProduct.modelNumber,
+          warrantyExpiryDate: aProduct.warrantyExpiryDate,
+          url: aProduct.url
+        };
+        ProductExport.insert(productExport);
+      }
+      var product, products;
+      products = ProductExport.find().fetch();
+      var remaining = products.length;
+      var i = -1;
+      var col = 9;
+      var row = 9;
+      $('#qrcode').empty();
+      var doc = new jsPDF();
+      function nextStep(){
+        i++;
+        if(i == products.length) return;
+        product = products[i];
+        new QRCode("qrcode", {text: product.url, width: 64, height: 64});
+        html2canvas(document.getElementById("qrcode"), {
+          background :'#FFFFFF',
+          onrendered: function(canvas) {
+            var imgData = canvas.toDataURL('image/jpeg');
+            doc.setFontSize(7);
+            doc.text(col, row-1, product.customerName.substring(0,12));
+            doc.addImage(imgData, 'JPEG', col, row);
+            doc.text(col, row+19, product.name.slice(-12));
+            col = col + 25;
+            if( col > 204 ) {
+              col = 9;
+              row = row + 30;
+            }
+            remaining--;
+            if (remaining === 0) {
+              doc.save('export.pdf');
+              $('#qrcode').empty();
+            } else {
+              $('#qrcode').empty();
+              nextStep();
+            }
+          }
+        });
+      }
+      nextStep();
+    };
+    var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
+      '?script=968'+
+      '&deploy=1'+
+      '&compid=TSTDRV1376166'+
+      '&h=368767d960319f1983b9';
+    var data = '';
+    $.ajax({
+      url: url,
+      dataType: 'jsonp',
+      crossDomain: true,
+      data: data,
+      success: callback,
+      error: callback
+    });
+  }
+  /*,
+  'click #exportProduct': function(e) {
+    e.preventDefault();
     var productExportArray = ProductExport.find().fetch();
     for (var i = 0; i < productExportArray.length; i++) {
       ProductExport.remove(productExportArray[i]._id);
@@ -121,36 +203,24 @@ Template.defaultHeader.events({
       if(i == products.length) return;
       product = products[i];
       new QRCode("qrcode", {text: product.url, width: 64, height: 64});
-      //new QRCode("qrcode", {text: product.url, width: 128, height: 128});
       html2canvas(document.getElementById("qrcode"), {
         background :'#FFFFFF',
         onrendered: function(canvas) {
           var imgData = canvas.toDataURL('image/jpeg');
-
           doc.setFontSize(7);
-          //doc.text(col, row-1, product.oemSerialNumberId + " " + product.warrantyExpiryDate);
           doc.text(col, row-1, product.customerName.substring(0,12));
           doc.addImage(imgData, 'JPEG', col, row);
-          //doc.setFontSize(3);
-          //doc.text(col, row+19, product.name.substring(0,10));
           doc.text(col, row+19, product.name.slice(-12));
-          //doc.text(col, row+36, product.name);
-
           col = col + 25;
-          //col = col + 50;
           if( col > 204 ) {
             col = 9;
             row = row + 30;
-            //row = row + 50;
           }
-
-
           remaining--;
           if (remaining === 0) {
             doc.save('export.pdf');
             $('#qrcode').empty();
           } else {
-            //doc.addPage();
             $('#qrcode').empty();
             nextStep();
           }
@@ -158,7 +228,7 @@ Template.defaultHeader.events({
       });
     }
     nextStep();
-  }
+  }*/
   /*,
   'click #exportProduct': function(e) {
     e.preventDefault();
