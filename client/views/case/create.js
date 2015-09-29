@@ -192,6 +192,11 @@ Template.createCase.events({
             }
             var caseId = Case.insert(aCase);
             //alert('A support case no. '+aCase.number+' has been created. Thank you!');
+            Meteor.call('sendEmail',
+              aCase.email,
+              'admin@qrcrm.meteor.com',
+              'Case No: ' + aCase.number,
+              'Your case has been created successfully. Thank You!');
             Router.go('readCase', {_id: caseId});
             //location.reload();
         };

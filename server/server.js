@@ -13,9 +13,19 @@ Meteor.startup(function () {
     }
   })
 })
-/*
+
 Meteor.methods({
-    shortUrl: function (longUrl, result) {
+  sendEmail: function (to, from, subject, text) {
+    check([to, from, subject, text], [String]);
+    this.unblock();
+    Email.send({
+      to: to,
+      from: from,
+      subject: subject,
+      text: text
+    });
+  }
+    /*shortUrl: function (longUrl, result) {
         console.log(longUrl);
         var url = 'https://api-ssl.bitly.com/v3/shorten?access_token=eba13be7f960d1593d40e4b44b4ed929e41c91b5&longUrl=' + longUrl;
         var shortUrl = '';
@@ -31,6 +41,5 @@ Meteor.methods({
         );
 
         return 'hello';
-    }
+    }*/
 })
-*/
