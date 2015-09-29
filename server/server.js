@@ -24,6 +24,14 @@ Meteor.methods({
       subject: subject,
       text: text
     });
+  },
+  currentUserIsAdmin: function (result) {
+    var admin = Houston._user_is_admin(this.userId);
+    if (!admin) {
+      return false;
+    } else {
+      return true;
+    }
   }
     /*shortUrl: function (longUrl, result) {
         console.log(longUrl);
