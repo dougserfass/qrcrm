@@ -12,6 +12,7 @@ Template.defaultHeader.events({
     var self = this;
     var productImports;
     var callback = function (data) {
+      //console.log(data);
       self.productImports = JSON.parse(data);
       var qrrecordids = '';
       for (var i = 0; i < self.productImports.length; i++) {
@@ -56,8 +57,8 @@ Template.defaultHeader.events({
       var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
         '?script=965'+
         '&deploy=1'+
-        '&compid=TSTDRV1376166'+
-        '&h=76f084d9da3d010ec3b3'+
+        '&compid=TSTDRV1393278'+
+        '&h=bbd9d8efec8031c1c370'+
         '&qrrecordids='+qrrecordids;
       var data = '';
       $.ajax({
@@ -72,8 +73,8 @@ Template.defaultHeader.events({
     var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
       '?script=965'+
       '&deploy=1'+
-      '&compid=TSTDRV1376166'+
-      '&h=76f084d9da3d010ec3b3'+
+      '&compid=TSTDRV1393278'+
+      '&h=bbd9d8efec8031c1c370'+
       '&qrrecordids=';
     var data = '';
     $.ajax({
@@ -97,6 +98,7 @@ Template.defaultHeader.events({
       }
       var aProduct;
       var productArray = Product.find({oemSerialNumberId: {$in: self.productExports}}).fetch();
+      //var productArray = Product.find().fetch();
       for (var i = 0; i < productArray.length; i++) {
         aProduct = productArray[i];
         var productExport = {
@@ -130,13 +132,18 @@ Template.defaultHeader.events({
           onrendered: function(canvas) {
             var imgData = canvas.toDataURL('image/jpeg');
             doc.setFontSize(7);
-            doc.text(col, row-1, product.customerName.substring(0,12));
+            //doc.text(col, row-1, product.customerName.substring(0,12));
             doc.addImage(imgData, 'JPEG', col, row);
-            doc.text(col, row+19, product.name.slice(-12));
+            //doc.text(col, row+19, product.name.slice(-12));
+            doc.text(col, row+19, product.serialNumber);
             col = col + 25;
             if( col > 204 ) {
               col = 9;
               row = row + 30;
+            }
+            if( row > 250 ) {
+              row = 9;
+              doc.addPage();
             }
             remaining--;
             if (remaining === 0) {
@@ -154,8 +161,8 @@ Template.defaultHeader.events({
     var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
       '?script=968'+
       '&deploy=1'+
-      '&compid=TSTDRV1376166'+
-      '&h=368767d960319f1983b9';
+      '&compid=TSTDRV1393278'+
+      '&h=bb290e33afafd0c1f7ba';
     var data = '';
     $.ajax({
       url: url,
