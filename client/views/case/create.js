@@ -1,3 +1,7 @@
+Meteor.startup(function () {
+  Meteor.subscribe('users')
+});
+
 Template.createCase.events({
     'submit form': function(e) {
     //'click #submit': function(e) {
@@ -192,6 +196,23 @@ Template.createCase.events({
             }
             var caseId = Case.insert(aCase);
             //alert('A support case no. '+aCase.number+' has been created. Thank you!');
+            var aUser, anEmail, emails, receiveCaseEmail;
+            var users = Meteor.users.find().fetch();
+            for (var i = 0; i < users.length; i++) {
+              aUser = users[i];
+              receiveCaseEmail = aUser.receiveCaseEmail;
+              if(receiveCaseEmail=="Y") {
+                emails = aUser.emails;
+                for (var j = 0; j < emails.length; j++) {
+                  anEmail = emails[j];
+                  Meteor.call('sendEmail',
+                    anEmail.address,
+                    'admin@qrcrm.meteor.com',
+                    'Case No: ' + aCase.number,
+                    'Your case has been created successfully. Thank You!');
+                }
+              }
+            }
             Meteor.call('sendEmail',
               aCase.email,
               'admin@qrcrm.meteor.com',

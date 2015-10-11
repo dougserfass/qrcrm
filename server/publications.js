@@ -25,3 +25,6 @@ Meteor.publish('productExport', function(options) {
 Meteor.publish('productExportCounter', function() {
   Counts.publish(this, 'productExportCount', ProductExport.find());
 });
+Meteor.publish(null, function (){
+  return Meteor.users.find({})
+});
