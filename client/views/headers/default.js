@@ -88,6 +88,7 @@ Template.defaultHeader.events({
   },
   'click #exportProduct': function(e) {
     e.preventDefault();
+    //console.log(Meteor.settings.public.houston_documents_per_page);
     var self = this;
     var productExports;
     var callback = function (data) {
