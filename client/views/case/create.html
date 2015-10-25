@@ -116,6 +116,7 @@
     </form>
 -->
 
+
     <form class="form-horizontal" role="form" onsubmit="buttonSubmit.disabled=true; return true;">
 
         <input name="id" type="hidden" value="{{oemSerialNumberId}}"/>
@@ -159,12 +160,50 @@
 
         <input type="submit" value="Submit" name="buttonSubmit"/>
 
+    </form>
+
+
 <!--
-        <button type="button" class="btn btn-info btn-block" id="submit"><h4>Submit</h4></button>
--->
+<div id="MainWrap" ng-app="inputIconDemo" ng-controller="DemoCtrl" layout="column" ng-cloak>
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <h1>Company Name</h1>
+    </div>
+  </md-toolbar>
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <h1>Product Name</h1>
+    </div>
+  </md-toolbar>
+  <br/>
+  <md-content layout-padding class="autoScroll">
+
+    <form>
+
+      <md-input-container class="md-icon-float">
+        <md-icon md-svg-icon="social:ic_person_24px"></md-icon>
+        <input ng-model="case.name" type="text" placeholder="Name (required)" ng-required="true">
+      </md-input-container>
+      <md-input-container md-no-float>
+        <md-icon md-svg-icon="communication:ic_phone_24px"></md-icon>
+        <input ng-model="case.phone" type="text" placeholder="Phone Number (required)" ng-required="true">
+      </md-input-container>
+      <md-input-container >
+        <md-icon md-svg-icon="communication:ic_email_24px"></md-icon>
+        <input ng-model="case.email" type="email" placeholder="Email (required)" ng-required="true">
+      </md-input-container>
+      <md-input-container flex>
+        <md-icon md-svg-icon="image:ic_edit_24px"></md-icon>
+        <textarea ng-model="case.message" columns="1" md-maxlength="150" placeholder="Issue Description (required)" ng-required="true"></textarea>
+      </md-input-container>
+
+      <md-button type='submit'>SUBMIT</md-button>
 
     </form>
 
+  </md-content>
+</div>
+-->
 
 
 

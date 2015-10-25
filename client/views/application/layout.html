@@ -52,11 +52,15 @@
 </template>
 -->
 <template name="layout">
+
   <div class="container-fluid">
     {{> defaultHeader}}
     <div id="main" class="row-fluid">
+
       {{> yield}}
+
     </div>
     {{> defaultFooter}}
   </div>
+
 </template>
