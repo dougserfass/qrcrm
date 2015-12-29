@@ -57,8 +57,8 @@ Template.defaultHeader.events({
       var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
         '?script=965'+
         '&deploy=1'+
-        '&compid=TSTDRV1393278'+
-        '&h=bbd9d8efec8031c1c370'+
+        '&compid=TSTDRV1432101'+
+        '&h=a9509fb520cef5f539c2'+
         '&qrrecordids='+qrrecordids;
       var data = '';
       $.ajax({
@@ -73,8 +73,8 @@ Template.defaultHeader.events({
     var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
       '?script=965'+
       '&deploy=1'+
-      '&compid=TSTDRV1393278'+
-      '&h=bbd9d8efec8031c1c370'+
+      '&compid=TSTDRV1432101'+
+      '&h=a9509fb520cef5f539c2'+
       '&qrrecordids=';
     var data = '';
     $.ajax({
@@ -162,8 +162,8 @@ Template.defaultHeader.events({
     var url = 'https://forms.na1.netsuite.com/app/site/hosting/scriptlet.nl'+
       '?script=968'+
       '&deploy=1'+
-      '&compid=TSTDRV1393278'+
-      '&h=bb290e33afafd0c1f7ba';
+      '&compid=TSTDRV1432101'+
+      '&h=80736b669f8b8cc1448a';
     var data = '';
     $.ajax({
       url: url,
