@@ -265,7 +265,7 @@ Template.createCase.events({
 
     }
 });
-
+/*
 angular
   .module('inputIconDemo', ['ngMaterial', 'ngMessages'])
   .controller('DemoCtrl', ['$scope', function($scope) {
@@ -292,3 +292,4 @@ var themeIcons = ['$mdIconProvider' , function ($mdIconProvider) {
 
 angular.module('inputIconDemo')
   .config(themeIcons);
+*/
